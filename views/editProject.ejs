@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dim">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Project</title>
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+
+  <%- include('partials/navbar') %>
+
+  <div class="container mx-auto">
+
+    <div class="hero bg-base-200 rounded-lg p-6">
+      <div class="hero-content text-center">
+        <div class="max-w-md">
+          <h1 class="text-4xl font-bold">Edit Project</h1>
+          <p class="py-4">Update the project details and save changes.</p>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="card bg-base-200 shadow p-6">
+      <form method="POST" action="/solutions/editProject">
+
+        <input type="hidden" name="id" value="<%= project.id %>" />
+
+        <div class="form-control mb-4">
+          <label class="label"><span class="label-text">Title</span></label>
+          <input name="title" type="text" class="input input-bordered" value="<%= project.title %>" required />
+        </div>
+
+        <div class="form-control mb-4">
+          <label class="label"><span class="label-text">Feature Image URL</span></label>
+          <input name="feature_img_url" type="url" class="input input-bordered" value="<%= project.feature_img_url %>" required />
+        </div>
+
+        <div class="form-control mb-4">
+          <label class="label"><span class="label-text">Sector</span></label>
+          <select name="sector_id" class="select select-bordered" required>
+            <option value="1" <%= project.sector_id == 1 ? "selected" : "" %>>Land Sinks</option>
+            <option value="2" <%= project.sector_id == 2 ? "selected" : "" %>>Industry</option>
+            <option value="3" <%= project.sector_id == 3 ? "selected" : "" %>>Transportation</option>
+            <option value="4" <%= project.sector_id == 4 ? "selected" : "" %>>Electricity</option>
+            <option value="5" <%= project.sector_id == 5 ? "selected" : "" %>>Food, Agriculture, and Land Use</option>
+          </select>
+        </div>
+
+        <div class="form-control mb-4">
+          <label class="label"><span class="label-text">Summary (Short)</span></label>
+          <textarea name="summary_short" class="textarea textarea-bordered" rows="3" required><%= project.summary_short %></textarea>
+        </div>
+
+        <div class="form-control mb-4">
+          <label class="label"><span class="label-text">Intro (Short)</span></label>
+          <textarea name="intro_short" class="textarea textarea-bordered" rows="3" required><%= project.intro_short %></textarea>
+        </div>
+
+        <div class="form-control mb-6">
+          <label class="label"><span class="label-text">Impact</span></label>
+          <textarea name="impact" class="textarea textarea-bordered" rows="4" required><%= project.impact %></textarea>
+        </div>
+
+        <div class="form-control mb-6">
+          <label class="label"><span class="label-text">Original Source URL</span></label>
+          <input name="original_source_url" type="url" class="input input-bordered" value="<%= project.original_source_url %>" required />
+        </div>
+
+        <div class="flex gap-3">
+          <button class="btn btn-primary" type="submit">Save Changes</button>
+          <a class="btn" href="/solutions/projects/<%= project.id %>">Cancel</a>
+          <a class="btn btn-error" href="/solutions/deleteProject/<%= project.id %>">Delete Project</a>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</body>
+</html>

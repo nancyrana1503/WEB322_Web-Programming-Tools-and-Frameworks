@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dim">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+
+  <%- include('partials/navbar') %>
+
+  <div class="container mx-auto">
+
+    <div class="hero bg-base-200 rounded-lg p-6 mt-6">
+      <div class="hero-content text-center">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold">Login</h1>
+          <p class="py-4">Enter your admin credentials to manage projects.</p>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="card bg-base-200 shadow p-6 max-w-md mx-auto">
+
+      <% if (errorMessage) { %>
+        <div class="alert alert-error mb-4">
+          <span><%= errorMessage %></span>
+        </div>
+      <% } %>
+
+      <form method="POST" action="/login">
+
+        <div class="form-control mb-4">
+          <label class="label"><span class="label-text">User Name</span></label>
+          <input
+            type="text"
+            name="userName"
+            class="input input-bordered"
+            value="<%= userName %>"
+            required
+          />
+        </div>
+
+        <div class="form-control mb-6">
+          <label class="label"><span class="label-text">Password</span></label>
+          <input
+            type="password"
+            name="password"
+            class="input input-bordered"
+            required
+          />
+        </div>
+
+        <div class="flex gap-3">
+          <button class="btn btn-primary" type="submit">Login</button>
+          <a class="btn" href="/">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</body>
+</html>
